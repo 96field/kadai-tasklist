@@ -1,0 +1,33 @@
+class UsersController < ApplicationController
+  before_action :require_user_logged_in, only: [:index, :show]
+
+  def index
+    # 課題の要件に含まれていないため省略
+  end
+
+  def show
+    # 課題の要件に含まれていないため省略
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = 'ユーザーを登録しました。'
+      #redirect_to @user
+      redirect_to login_url
+    else
+      flash.now[:danger] = 'ユーザーの登録に失敗しました。'
+      render :new
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+end

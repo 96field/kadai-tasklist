@@ -4,7 +4,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>id</th>
+<% if false %>        <th>id</th> <% end %>
         <th>タスク</th>
         <th>ステータス</th>
       </tr>
@@ -12,8 +12,8 @@
     <tbody>
       <% @tasks.each do |task| %>
         <tr>
-          <td><%= link_to task.id, task %></td>
-          <td><%= task.content %></td>
+<% if false %>          <td><%= link_to task.id, task %></td> <% end %>
+          <td><%= link_to task.content, task %></td>
           <td><%= task.status %></td>
         </tr>
       <% end %>
@@ -24,5 +24,5 @@
   </div>
 <% end %>
 
-
 <%= link_to '新規タスクの登録', new_task_path, class: "btn btn-primary" %>
+

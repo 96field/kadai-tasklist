@@ -5,6 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-(1..30).each do |number|
-  Task.create(content: 'test task ' + number.to_s, status: 'status ' + number.to_s)
+(1..200).each do |number|
+  Task.create(content: 'test task ' + number.to_s, status: 'status ' + number.to_s, user_id: number%4)
 end

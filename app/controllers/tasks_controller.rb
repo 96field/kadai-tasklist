@@ -3,26 +3,18 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    if logged_in?
-      @tasks = current_user.tasks.order(id: :desc).page(params[:page])
-    end
-    #@tasks = Task.order(id: :desc).page(params[:page]).per(10)
-    #@tasks = Task.all.page(params[:page]).per(10)
+    @tasks = current_user.tasks.order(id: :desc).page(params[:page])
   end
 
   def show
-    # その人のタスクか確認する処理が必要
-    # @task = Task.find(params[:id])
   end
 
   def new
-    @task = Task.new
-    @task.user_id = session[:user_id]
+    @task = current_user.tasks.build
   end
 
   def create
-    @task = Task.new(task_params)
-    @task.user_id = session[:user_id]
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = 'タスクが正常に登録されました'
       redirect_to @task
@@ -33,12 +25,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    # @task = Task.find(params[:id])
   end
 
   def update
-    # @task = Task.find(params[:id])
-
     if @task.update(task_params)
       flash[:success] = 'タスクは正常に更新されました'
       redirect_to @task
@@ -49,7 +38,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    # @task = Task.find(params[:id])
     @task.destroy
 
     flash[:success] = 'タスクが正常に削除されました'

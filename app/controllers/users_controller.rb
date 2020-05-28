@@ -1,13 +1,4 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show]
-
-  def index
-    # 課題の要件に含まれていないため省略
-  end
-
-  def show
-    # 課題の要件に含まれていないため省略
-  end
 
   def new
     @user = User.new
